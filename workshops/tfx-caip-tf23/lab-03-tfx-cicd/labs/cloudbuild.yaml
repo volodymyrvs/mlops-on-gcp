@@ -19,6 +19,9 @@
 # supports automated building and deploying.
 # 
 
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 steps:
 # Build the image that encapsulates the pipeline.
 - name: 'gcr.io/cloud-builders/docker'
@@ -42,10 +45,6 @@ steps:
   - 'USE_KFP_SA=$_USE_KFP_SA'
   - 'ENABLE_TUNING=$_ENABLE_TUNING'
   dir: $_PIPELINE_FOLDER
-
-  options:
-  logging: CLOUD_LOGGING_ONLY
-
 
 # Push the custom image to Container Registry 
 images: ['gcr.io/$PROJECT_ID/$_TFX_IMAGE_NAME:$TAG_NAME']
